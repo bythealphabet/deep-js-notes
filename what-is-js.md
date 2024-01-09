@@ -38,6 +38,8 @@ console.log(y); // Attempting to retrieve 'y'.
 
 As JavaScript runs this, it's constantly referring to the Scope chart, locating 'x' and 'y'.
 
+
+
 **Breaking Down an Example:**
 
 ```Javascript
@@ -56,6 +58,20 @@ As JavaScript runs this, it's constantly referring to the Scope chart, locating 
 13 office(); // Output: Welcome!
 14 letsGo(); // Output: Where?
 ```
+
+
+*Lexical Scope Ilustrations:*
+
+We can compare Scopes with buckets, and buckets within buckets. each bucket has its own color. And so the Global scope, we can give it the red color bucket.
+
+looking into the example above we can see that Global scope has 3 
+buckets, the first bucket is the developer variable, the second bucket is the office function, and the third bucket is the letsGo function.
+
+bucket colors: 
+- red: Global scope
+- blue: office function scope
+- green: letsGo function scope
+
 
 In this script, the 'developer' variable on line 1 is a citizen of the global scope. The Scope Manager checks if a 'developer' already lives in this global neighborhood. Finding none, it allocates space for 'Isaac'. When we enter the 'office' function, we're stepping into a new scope. Here, we meet another local 'developer,' 'Mitchell'.
 
