@@ -1,99 +1,68 @@
-# What is JavaScript
+# What is JavaScript?
 
-## Introduction: JavaScript's Pillars
+## Introduction: The Heart of JavaScript
 
-JavaScript, a versatile and widely-used programming language, can be divided into three fundamental parts, known as the 'three pillars.'
- Understanding these pillars is essential to grasp the essence of JavaScript.
+Hey there, fellow coders! You already know that JavaScript is the lifeblood of web interactions, right? But what really makes JavaScript tick? It’s built on three critical concepts, or let's call them the 'three pillars.'
 
- Comprehending these concepts not only enhances our confidence in writing JavaScript but also plays a pivotal role in minimizing bugs in our code.
+### **These Three Pillars Are:** 
 
+- Types and Coercion (how JavaScript juggles different data types)
+- Lexical Scope (our spotlight topic today)
+- Prototypical Inheritance (how objects in JavaScript are linked)
 
-### **The three pillars are:** 
+In this session, we're going to dive into Lexical Scope and Prototypical Inheritance. It’s like taking a closer look under JavaScript’s hood.
 
-- Types and Coercion
-- Lexical Scope
-- Prototypical Inheritance
+## Lexical Scope: Mapping the 'Where' in JavaScript
 
-In this article, we will focus specifically on Lexical Scope and Prototypical Inheritance. The aim is to provide a thorough understanding of these two pillars, enabling you to make informed choices in your approach to JavaScript development.
+Let's unravel the mystery of Lexical Scope! It might sound highbrow, but it's a fundamental concept that's quite straightforward once you get the hang of it. Think of it as the rulebook for locating stuff in your code.
 
-## Lexical Scope
+**A Little Heads-Up:**
+Before we get our hands dirty, remember that JavaScript, despite being a scripting language, goes through a sort of 'dress rehearsal' called compilation. During this phase, there's a backstage wizard known as the Scope Manager. This wizard is tasked with figuring out where each variable or function should live in your code.
 
-Understanding JavaScript's Lexical Scope is a key step in grasping closures and, by extension, the module pattern in JavaScript.
+**Picture These Two Key Players:**
+- The Scope Manager, the strategist, setting up the game board.
+- The Virtual Machine, the executor, bringing the code to life.
 
-before we jump into scoops it is important to note that even tho Javascript is a script language, The Javascript engine still goes thru a compilation process before executing the code. in the compiled process we can say that Javascript has a kind of Scope manager. the job of the scope manager is determines two things: the role of a variable (is it being set or accessed?) and the scope in which this variable exists.
-right after this first pass "compilation", Javascript will pass the job to the Virtual Machine to execute the code.
+The Scope Manager lays out the plan, and then the Virtual Machine follows it, animating your script.
 
-so lets imagine that we have two different characters talking to each other in this Javascript story.
+**Scope: What’s That About?**
+Imagine Scope as a big chart showing where every variable and function in your code resides. When you declare a variable or a function, it's like you're pinning it on this chart for JavaScript to reference later.
 
-- the Scope manager
-- the Virtual Machine.
-
-the Scope manager will be the one preparing everything before hand, and creating a plan. this plan will be used for when the execution engine steps in and start to excute our code.
-
-**So... what is Scope?**
-
-Scope in JavaScript can be thought of as the context in which values and expressions are 'visible' or can be accessed. Essentially, it's about 'where to look for things.' A variable in JavaScript can play two roles: either a value is being assigned to it, or a value is being retrieved from it. 
-
-Consider this example:
+Example time:
 ```Javascript
-// Example of scope in action:
-x = 42;        // Here, 'x' is being assigned a value.
-console.log(y); // Here, the value of 'y' is being retrieved.
+// Scope in action:
+x = 42;        // Assigning a value to 'x'.
+console.log(y); // Attempting to retrieve 'y'.
+
 ```
-When a Javascript engine process the code it is constantly asking at first in what position is this variable in, and secondly in what scope is this variable in. 
 
-When the JavaScript engine processes this code, it first identifies the positions of variables 'x' and 'y'. Then, it determines the scopes where these variables exist. If a variable is not found in the immediate scope, the engine looks outward to the enclosing scope, continuing this process until the variable is found or no more scopes are available.
+As JavaScript runs this, it's constantly referring to the Scope chart, locating 'x' and 'y'.
 
-so lets break this down with an example.
+**Breaking Down an Example:**
 
 ```Javascript
 1 var developer = "Isaac";
 2
 3 function office() {
 4   var developer = "Mitchell";
-5    console.log("Welcome!");
+5   console.log("Welcome!");
 6 } 
 7
 8 function letsGo() {
-9    var walk = "Where?";
-10    console.log(walk)
+9   var walk = "Where?";
+10  console.log(walk)
 11 }
 12
-13 office(); // Welcome!
-14 letsGo(); // Where?
+13 office(); // Output: Welcome!
+14 letsGo(); // Output: Where?
 ```
 
-In our example, the 'developer' variable declared at the top on line 1 is in the global scope. 
-When the compiler processes this line, it checks if the variable already exists in the global scope. If not, it creates the variable and assigns the value 'Isaac' to it. As the compiler continues, it encounters the 'office' function on line 3. 
+In this script, the 'developer' variable on line 1 is a citizen of the global scope. The Scope Manager checks if a 'developer' already lives in this global neighborhood. Finding none, it allocates space for 'Isaac'. When we enter the 'office' function, we're stepping into a new scope. Here, we meet another local 'developer,' 'Mitchell'.
 
-This function creates a new scope. Inside this scope, on line 4, there is another 'developer' variable. The compiler checks if this variable exists within the 'office' scope and, finding that it does not, assigns the value 'Mitchell' to it. It's important to note that this 'developer' is different from the global 'developer' because they exist in separate scopes
+These two 'developers', though they share a name, are distinct because they're allocated in different scopes. No mix-up here!
 
-In the example above, the compiler will be setting the developer variable the office function and the letsGo function to the Global scope.
-also it will be setting the second developer variable that we find on line 4 to the office scope.
+After the Scope Manager arranges everyone in their respective places, it's time for the Virtual Machine to take the stage. It starts executing the script, consulting the Scope Manager at each step. For instance, at line 1, the Virtual Machine inquires about 'developer', and the Scope Manager confirms its global scope residence, allowing the Virtual Machine to allocate memory for 'Isaac'.
 
-and on line 9 the walk variable will be set in the letsGo function scope.
+This dance between the Scope Manager and the Virtual Machine continues throughout the script. Each function call and variable declaration is meticulously executed based on the plan laid out by the Scope Manager.
 
-right after the Scope manager has done is job, and there is no more declaration, we can say it prepared the everything,  before execution in some way it created a plan and now it is ready for execution.
-
-so now the Scope Manager has it's plan at hand and the Engine starts in to execute the code. and it while the engine is working it will be asking the to the Scope manager, details about the parts of code it needs to execute.
-
-so the Virtual Machine Engine start execution, it will check line 1 it sees that there is a declaration for developer so it asks the Scope manager, hey do you know something about a developer? the Scope manager will answer yes here it is, it's in the global scope. and so the Virtual engine excutes line one and creates a space for the value "Isaac" and saves it somewhere in the computer".
-
-right there after the Virtual Machine will jump to line 13 and checks again with the the Scope manager, and asks do you know about a office.
-the Scope manager checks its plan. and sees yes there is one. so it passes it to the  Virtual machine, and so the Virtual machine will execute the function "office". so now we are in the office function, and the Scope manager and the Virtual machine will do the same proccess in the office function, asking if he know about the developer variable, the Scope manager checks it plan finds that yes there it is and passes it to the Virtual machine so that it can create (alocate space) and save the string "Mitchell".  
-
-I can imagine that this concept is fairly simple to understand, but lets turn the difficulty up a notch.
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
+This might seem straightforward, but there's more to Lexical Scope than meets the eye. Let’s delve deeper and explore more of these intricacies in JavaScript's world of Lexical Scope!
