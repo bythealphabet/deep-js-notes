@@ -82,6 +82,9 @@ so the Virtual Machine Engine start execution, it will check line 1 it sees that
 right there after the Virtual Machine will jump to line 13 and checks again with the the Scope manager, and asks do you know about a office.
 the Scope manager checks its plan. and sees yes there is one. so it passes it to the  Virtual machine, and so the Virtual machine will execute the function "office". so now we are in the office function, and the Scope manager and the Virtual machine will do the same proccess in the office function, asking if he know about the developer variable, the Scope manager checks it plan finds that yes there it is and passes it to the Virtual machine so that it can create (alocate space) and save the string "Mitchell".  
 
+I can imagine that this concept is fairly simple to understand, but lets turn the difficulty up a notch.
+
+
 
 
 
